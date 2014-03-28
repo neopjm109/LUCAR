@@ -12,11 +12,16 @@
 		<select id="car_make">
 			<option>Any Make</option>
 		</select>
+		<select id="car_make">
+			<option>Year</option>
+		</select>
 		<select id="car_model">
 			<option>Any Model</option>
 		</select>
+		<input type="button" value="Search"/>
 	</div>
 </div>
+
 <?php 
 	include("footer.php");
 ?>
