@@ -11,6 +11,7 @@
 	<div id="searchbar">
 		<select id="car_make">
 			<option>Any Make</option>
+			<option>Audi</option>
 		</select>
 		<select id="car_model">
 			<option>Any Model</option>
