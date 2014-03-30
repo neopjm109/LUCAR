@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 호스트: localhost
--- 처리한 시간: 14-03-27 12:04 
+-- 처리한 시간: 14-03-30 18:35 
 -- 서버 버전: 5.5.35
 -- PHP 버전: 5.3.10-1ubuntu3.10
 
@@ -28,6 +28,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `cart` (
   `no` int(11) NOT NULL AUTO_INCREMENT,
+  `member` varchar(255) NOT NULL,
+  `sell` int(11) NOT NULL,
   PRIMARY KEY (`no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
@@ -38,8 +40,12 @@ CREATE TABLE IF NOT EXISTS `cart` (
 --
 
 CREATE TABLE IF NOT EXISTS `car_list` (
-  `id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `make` varchar(255) NOT NULL,
+  `year` year(4) NOT NULL,
+  `model` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -48,17 +54,19 @@ CREATE TABLE IF NOT EXISTS `car_list` (
 --
 
 CREATE TABLE IF NOT EXISTS `member` (
-  `id` varchar(50) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
+  `password` varchar(50) NOT NULL,
+  `phone` varchar(50) NOT NULL,
+  PRIMARY KEY (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- 테이블의 덤프 데이터 `member`
 --
 
-INSERT INTO `member` (`id`, `name`) VALUES
-('pjm1989', '박준민');
+INSERT INTO `member` (`email`, `name`, `password`, `phone`) VALUES
+('', '박준민', '', '');
 
 -- --------------------------------------------------------
 
@@ -67,7 +75,13 @@ INSERT INTO `member` (`id`, `name`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `sell_list` (
-  `id` int(11) NOT NULL
+  `id` int(11) NOT NULL,
+  `seller` varchar(255) NOT NULL,
+  `car` int(11) NOT NULL,
+  `subject` varchar(255) NOT NULL,
+  `contents` text NOT NULL,
+  `date` datetime NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -77,7 +91,10 @@ CREATE TABLE IF NOT EXISTS `sell_list` (
 --
 
 CREATE TABLE IF NOT EXISTS `sell_photo` (
-  `id` int(11) NOT NULL
+  `id` int(11) NOT NULL,
+  `seller` varchar(255) NOT NULL,
+  `sell` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
