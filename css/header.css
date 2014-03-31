@@ -35,6 +35,11 @@ a {
 	text-align:right;
 }
 
+#menu > li:first-of-type {
+	float:left;
+	margin-left:-3em;
+}
+
 #menu > li {
 	display:inline-block;
 	padding:0.8em;
@@ -98,4 +103,35 @@ a {
 	border-radius:5px;
 	border:1px solid #7f8f9f;
 	background-color:#bfbfbf;
+}
+
+#loginbox {
+	width:10em;
+	margin:5em auto;
+	padding:5em;
+	
+	border:1px solid black;
+}
+
+#signupbox {
+	width:20em;
+	margin:3em auto;
+	padding:5em;
+	
+	border:1px solid black;
+}
+
+#loginbox input,
+#signupbox input {
+	width:100%;
+	border:1px solid black;
+	padding:5px;
+}
+
+#loginbox input[type='button'] {
+	width:108%;
+}
+
+#signupbox input[type='button'] {
+	width:104%;
 }

@@ -18,10 +18,11 @@
 	
 	<div id="menubar">
 		<ul id="menu">
+			<li><a href="/">HOME</a></li>
 			<li><a href="">For Inspector</a></li>
 			<li><a href="">For Seller</a></li>
-			<li><a href="">Login</a></li>
-			<li><a href="">Sign Up</a></li>
+			<li><a href="login.php">Login</a></li>
+			<li><a href="signup.php">Sign Up</a></li>
 		</ul>
 	</div>
 
