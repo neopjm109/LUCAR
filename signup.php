@@ -3,15 +3,24 @@
 ?>
 
 <div id="signupbox">
-	E-mail<br>
+	E-mail&nbsp;&nbsp;&nbsp;
+	<span class="alert">Please write a e-mail</span><br>
 	<input type="text" name="signID"/><br>
-	Password<br>
+	
+	Password&nbsp;&nbsp;&nbsp;
+	<span class="alert">Please write a password</span><br>
 	<input type="password" name="signPW"/><br>
-	Password check<br>
+	
+	Password check&nbsp;&nbsp;&nbsp;
+	<span class="alert">Please check a password</span><br>
 	<input type="password" name="signPW"/><br>
-	Name<br>
+	
+	Name&nbsp;&nbsp;&nbsp;
+	<span class="alert">Please write a name</span><br>
 	<input type="text" name="signName"/><br>
-	Phone<br>
+	
+	Phone&nbsp;&nbsp;&nbsp;
+	<span class="alert">Please write a phone number</span><br>
 	<input type="text" name="signPhone"/><br>
 	<input type="button" value="Sign Up"/><br>
 </div>

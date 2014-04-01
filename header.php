@@ -19,8 +19,8 @@
 	<div id="menubar">
 		<ul id="menu">
 			<li><a href="/">HOME</a></li>
-			<li><a href="">For Inspector</a></li>
-			<li><a href="">For Seller</a></li>
+			<li><a href="inspector.php">For Inspector</a></li>
+			<li><a href="seller.php">For Seller</a></li>
 			<li><a href="login.php">Login</a></li>
 			<li><a href="signup.php">Sign Up</a></li>
 		</ul>

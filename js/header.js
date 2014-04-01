@@ -1,6 +1,25 @@
 $(document).ready(function(){
+	
+	$("#car_make").on('change', function(){
+		$.post('modelList.php', {
+			make:$("#car_make").val()
+		}, function(data){
+			$("#car_model").html(data);
+		});
+	});
+	
 	$("#search").on('click', function(){
-		$("#carSearch").submit();
+		$(".alert").hide();
+		
+		if ($("#car_make").val() == '0') {
+			$(".alert").text("Please choose a make").fadeIn(700);
+		} else if ($("#car_year").val() == '0') {
+			$(".alert").text("Please choose a year").fadeIn(700);
+		} else if ($("#car_model").val() == '0') {
+			$(".alert").text("Please choose a model").fadeIn(700);
+		} else {
+			$("#carSearch").submit();
+		}
 	});
 	
 	$("div.column").on('click', function(){

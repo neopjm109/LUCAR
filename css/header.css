@@ -135,3 +135,13 @@ a {
 #signupbox input[type='button'] {
 	width:104%;
 }
+
+.alert {
+	color:#f00;
+	display:none;
+	text-align:center;
+}
+
+#signupbox .alert {
+	text-align:left;
+}

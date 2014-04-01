@@ -8,6 +8,7 @@
 	Password<br>
 	<input type="password" name="loginPW"/><br>
 	<input type="button" value="LOGIN"/>
+	<div class="alert">alert</div>
 </div>
 
 <?php
