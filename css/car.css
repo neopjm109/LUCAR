@@ -1,0 +1,35 @@
+@CHARSET "UTF-8";
+
+#car_list {
+	width:50em;
+	border:1px solid black;
+	margin:1em auto;
+	padding:0.5em;
+	
+	text-align:center;
+}
+
+#car_page {
+	display:none;
+	position:absloute;
+	
+	left:50%;
+	
+	margin:0 auto;
+	
+	width:60em;
+	height:30em;
+	
+	border:1px solid black;
+}
+
+.column {
+	display:inline-block;
+	width:15em;
+	border:1px solid black;
+	
+	margin:5px;
+	padding:5px;
+	
+	text-align:left;
+}
