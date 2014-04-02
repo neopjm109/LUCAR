@@ -15,7 +15,7 @@
 	
 	$colCount = 0;
 	while ($row = mysqli_fetch_row($carList)) {
-		echo "<div class=\"column\"><input type=\"hidden\" id=\"carNum\" value=\"$row[0]\">";
+		echo "<div class=\"column\"><input type=\"hidden\" id=\"sellNum\" value=\"$row[2]\">";
 		echo "<img src=\"$row[1]\">Name: $row[0]<br>$row[5]<br>$row[7]";
 		echo "</div>";
 				$colCount++;

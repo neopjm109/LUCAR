@@ -1,6 +1,19 @@
 $(document).ready(function(){
 	
 	/*
+	 * 		KEY FUNCTION
+	 */
+	
+	$(this).on('keyup', function(e){
+		if( e.keyCode = 27) {
+			if ( $("#car_page").css("display") == "block") {
+				$("#car_page").hide();
+				$("#black_overlay").hide();
+			}
+		}
+	});
+	
+	/*
 	 * 		INDEX.PHP
 	 */
 	
@@ -55,13 +68,19 @@ $(document).ready(function(){
 		}
 	});
 
-	$("div.column").on('click', function(){
+	$("#car_list").on('click', 'div.column', function(){
 		$.post("carPageProc.php", {
-			car_num:$(this).find("#carNum").val()
+			sell_num:$(this).find("#sellNum").val()
 		}, function(data){
 			$("#car_page").html(data);
 		});
-		$("#car_page").css("display", "block");
+		$("#car_page").show();
+		$("#black_overlay").show();
+	});
+	
+	$("#car_page").on('click', '#car_page_close', function() {
+		$("#car_page").hide();
+		$("#black_overlay").hide();
 	});
 	
 });
