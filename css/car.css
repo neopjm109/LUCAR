@@ -1,5 +1,64 @@
 @CHARSET "UTF-8";
 
+#car_menu {
+	width:50em;
+	margin:0 auto;
+}
+
+#car_menu > ul {
+	list-style:none;
+	text-align:center;
+	padding:1em 0;
+	
+	background-color:#dfdfdf;
+	border-radius:5px;
+}
+
+#car_menu > ul li {
+	display:inline-block;
+	padding:0px 1em;
+}
+#car_searchbar {
+	width:50em;
+	height:3.5em;
+	
+	margin:0 auto;
+	
+	background-color:#afbfcf;
+	border-radius:5px;
+	
+	text-align:center;
+}
+
+#car_searchbar select {
+	margin-top:0.7em;
+	padding:0.5em 1em;
+	
+	min-width:15em;
+	max-width:15em;
+	
+	border-radius:5px;
+	border:1px solid #7f8f9f;
+	background-color:#dfdfdf;
+}
+
+#car_searchbar > input {
+	margin-top:0.5em;
+	padding:0.6em 1em;
+	
+	border-radius:5px;
+	border:1px solid #7f8f9f;
+	background-color:#dfdfdf;
+}
+#car_searchbar > input:hover {
+	margin-top:0.5em;
+	padding:0.6em 1em;
+	
+	border-radius:5px;
+	border:1px solid #7f8f9f;
+	background-color:#bfbfbf;
+}
+
 #car_list {
 	width:50em;
 	border:1px solid black;
@@ -32,4 +91,10 @@
 	padding:5px;
 	
 	text-align:left;
+}
+
+#car_list img {
+	width:100%;
+	min-height:7em;
+	max-height:7em;
 }
