@@ -1,5 +1,9 @@
 $(document).ready(function(){
 	
+	/*
+	 * 		INDEX.PHP
+	 */
+	
 	$("#car_make").on('change', function(){
 		$.post('modelList.php', {
 			make:$("#car_make").val()
@@ -22,6 +26,35 @@ $(document).ready(function(){
 		}
 	});
 	
+	/*
+	 * 		SEARCHRESULT.php
+	 */	
+	
+	$("#car_searchbar > #car_make").on('change', function(){
+		$.post('modelList.php', {
+			make:$("#car_searchbar > #car_make").val()
+		}, function(data){
+			$("#car_searchbar > #car_model").html(data);
+		});
+	});
+	
+	$("#car_searchbar > #search").on('click', function(){
+		$(".alert").hide();
+		
+		if ($("#car_searchbar > #car_make").val() == '0') {
+		} else if ($("#car_searchbar > #car_year").val() == '0') {
+		} else if ($("#car_model").val() == '0') {
+		} else {
+			$.post("carListProc.php", {
+				make:$("#car_searchbar > #car_make").val(),
+				year:$("#car_searchbar > #car_year").val(),
+				model:$("#car_model").val()
+			}, function(data) {
+				$("#car_list").html(data);
+			});
+		}
+	});
+
 	$("div.column").on('click', function(){
 		$.post("carPageProc.php", {
 			car_num:$(this).find("#carNum").val()
@@ -30,4 +63,5 @@ $(document).ready(function(){
 		});
 		$("#car_page").css("display", "block");
 	});
+	
 });
