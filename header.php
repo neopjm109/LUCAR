@@ -13,6 +13,7 @@
 	<script type="text/javascript" src="js/header.js"></script>
 	<link rel="stylesheet" href="css/header.css"/>
 	<link rel="stylesheet" href="css/car.css"/>
+	<link rel="stylesheet" href="css/seller.css"/>
 	
 	<body>
 	

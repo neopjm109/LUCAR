@@ -11,6 +11,6 @@
 
 	echo "<option value=\"0\">Any Model</option>";
 	while ($row = mysqli_fetch_row($result)) {
-		echo "<option>$row[3]</option>";
+		echo "<option value=\"$row[0]\">$row[2]</option>";
 	}
 ?>

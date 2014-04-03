@@ -83,6 +83,8 @@
 	padding:5px;
 	
 	text-align:left;
+	
+	cursor:pointer;
 }
 
 #car_page {

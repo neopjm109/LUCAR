@@ -1,17 +1,33 @@
 <?php
 	include("header.php");
+
+	$makeListQuery = mysqli_query($conn, "
+			select distinct make
+			from car_list
+			");
 	
 	$carMake = $_REQUEST['car_make'];
 	$carYear = $_REQUEST['car_year'];
-	$carModel = $_REQUEST['car_model'];
+	
+	if ($_REQUEST['car_model']) {
+		$carCode = $_REQUEST['car_model'];
 
-	$carList = mysqli_query($conn, "
-			select m.name, sp.img, sl.*
-			from car_list as cl, sell_list as sl, member as m, sell_photo as sp
-			where (cl.make = '$carMake' and cl.year ='$carYear' and cl.model ='$carModel')
-			and (cl.id = sl.car and sl.seller = m.email)
-			and (sp.sell = sl.id)
-			");
+		$carList = mysqli_query($conn, "
+				select sl.id, sp.photo_url, cl.model, sl.title, sl.date
+				from car_list as cl, sell_list as sl, sell_photo as sp
+				where cl.code='$carCode' and sl.year = '2013'
+				and cl.code = sl.car_code
+				and sp.sell_list_id = sl.id
+				");
+	} else {
+		
+		$carList = mysqli_query($conn, "
+				select sl.id, sp.photo_url, cl.model, sl.title, sl.date
+				from car_list as cl, sell_list as sl, sell_photo as sp
+				where cl.make = '$carMake' and sl.year ='$carYear'
+				and cl.code = sl.car_code and (sp.sell_list_id = sl.id)
+				");
+	}
 ?>
 
 <div id="contents">
@@ -28,11 +44,11 @@
 	<div id="car_searchbar">
 		<select id="car_make" name="car_make">
 			<option value="0">Any Make</option>
-			<option>Audi</option>
-			<option>BMW</option>
-			<option>Lexus</option>
-			<option>Mercedez-Benz</option>
-			<option>Porsche</option>
+<?php 
+	while ($row = mysqli_fetch_row($makeListQuery)) {
+		echo "<option>$row[0]</option>";
+	}
+?>
 		</select>
 		<select id="car_year" name="car_year">
 			<option value="0" >Year</option>
@@ -49,14 +65,17 @@
 		</select>
 		<input type="button" id="search" value="Search"/>
 	</div>
-	
+	필터, 조건변경 => 옆메뉴<br>
+	Model, Year, Make<br>
+	Color, Transmission(수동/자동), Mile(내 위치와의 거리), Mileage(차의 이동거리), Price
 	<div id="car_list">
 <?php 
 	$colCount = 0;
 	while ($row = mysqli_fetch_row($carList)) {
-		echo "<div class=\"column\"><input type=\"hidden\" id=\"sellNum\" value=\"$row[2]\">";
-		echo "<img src=\"$row[1]\">Name: $row[0]<br>$row[5]<br>$row[7]";
-		echo "</div>";
+		echo "<div class=\"column\"><input type=\"hidden\" id=\"sellNum\" value=\"$row[0]\">";
+		echo "<img src=\"$row[1]\">$row[2]<br>$row[3]<br>$row[4]";
+		echo "<br>가격, 올린날짜, 조회수(IP or 1일)";
+		echo "<br></div>";
 		$colCount++;
 	}
 	if ($colCount == 0) {

@@ -32,8 +32,6 @@ $(document).ready(function(){
 			$(".alert").text("Please choose a make").fadeIn(700);
 		} else if ($("#car_year").val() == '0') {
 			$(".alert").text("Please choose a year").fadeIn(700);
-		} else if ($("#car_model").val() == '0') {
-			$(".alert").text("Please choose a model").fadeIn(700);
 		} else {
 			$("#carSearch").submit();
 		}
@@ -56,12 +54,11 @@ $(document).ready(function(){
 		
 		if ($("#car_searchbar > #car_make").val() == '0') {
 		} else if ($("#car_searchbar > #car_year").val() == '0') {
-		} else if ($("#car_model").val() == '0') {
 		} else {
 			$.post("carListProc.php", {
 				make:$("#car_searchbar > #car_make").val(),
 				year:$("#car_searchbar > #car_year").val(),
-				model:$("#car_model").val()
+				code:$("#car_model").val()
 			}, function(data) {
 				$("#car_list").html(data);
 			});
