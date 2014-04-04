@@ -21,8 +21,10 @@
 	
 	Phone&nbsp;&nbsp;&nbsp;
 	<span class="alert">Please write a phone number</span><br>
-	<input type="text" name="signPhone"/><br>
+	<input type="text" id="signPhone" name="signPhone"/><br>
 	<input type="button" id="signUp" value="Sign Up"/><br>
+	
+	<span class="alert"></span>
 </div>
 
 <?php
