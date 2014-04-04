@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
 	/*
+<<<<<<< HEAD
 	 * 		KEY FUNCTION
 	 */
 	
@@ -15,6 +16,9 @@ $(document).ready(function() {
 	
 	/*
 	 * 		INDEX.PHP
+=======
+	 * INDEX.PHP
+>>>>>>> 54d5c390d773f21120ee5a897dbcb58969c3034f
 	 */
 
 	$("#car_make").on('change', function() {
@@ -56,19 +60,32 @@ $(document).ready(function() {
 		} else if ($("#car_searchbar > #car_year").val() == '0') {
 		} else {
 			$.post("carListProc.php", {
+<<<<<<< HEAD
 				make:$("#car_searchbar > #car_make").val(),
 				year:$("#car_searchbar > #car_year").val(),
 				code:$("#car_model").val()
+=======
+				make : $("#car_searchbar > #car_make").val(),
+				year : $("#car_searchbar > #car_year").val(),
+				model : $("#car_model").val()
+>>>>>>> 54d5c390d773f21120ee5a897dbcb58969c3034f
 			}, function(data) {
 				$("#car_list").html(data);
 			});
 		}
 	});
 
+<<<<<<< HEAD
 	$("#car_list").on('click', 'div.column', function(){
 		$.post("carPageProc.php", {
 			sell_num:$(this).find("#sellNum").val()
 		}, function(data){
+=======
+	$("div.column").on('click', function() {
+		$.post("carPageProc.php", {
+			car_num : $(this).find("#carNum").val()
+		}, function(data) {
+>>>>>>> 54d5c390d773f21120ee5a897dbcb58969c3034f
 			$("#car_page").html(data);
 		});
 		$("#car_page").show();
