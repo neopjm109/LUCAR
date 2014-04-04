@@ -144,18 +144,31 @@ $(document).ready(function() {
 			signupPostCheck();
 		}
 	});
+	
+	$('#signPhone').on('keypress', function(event) {
+		if( event.keyCode == 13 ){
+			signupPostCheck();
+		}
+	});
 
-	$("#signPhone").on('click', function() {
-		signupPostCheck()
+	$("#signUp").on('click', function() {
+		signupPostCheck();
 	});
 	
 	function signupPostCheck(){
 		$(".alert").hide();
-
+		
+		
 		var count = 0;
 		
 		if ($("#signID").val() == '') {
 			$(".alert:nth-of-type(1)").fadeIn(700);
+			count++;
+		}else if(checkEmailFormat() == false){
+			$(".alert:nth-of-type(1)").text("Email format is not").fadeIn(700);
+			count++;
+		}else if(checkEmailDuplication() == false){
+			$(".alert:nth-of-type(1)").text("Email already exist").fadeIn(700);
 			count++;
 		}
 		if ($("#signPW").val() == '') {
@@ -165,7 +178,11 @@ $(document).ready(function() {
 		if ($("#signPWCheck").val() == '') {
 			$(".alert:nth-of-type(3)").fadeIn(700);
 			count++;
+		} else if(checkPassword() == false){
+			$(".alert:nth-of-type(3)").text("Please check a password").fadeIn(700);
+			count++;
 		}
+		
 		if ($("#signName").val() == '') {
 			$(".alert:nth-of-type(4)").fadeIn(700);
 			count++;
@@ -186,5 +203,51 @@ $(document).ready(function() {
 			});
 		}
 	}
+	
+	function checkEmailFormat(){
+		
+		 var use_email = $('#signID').val();
+		 var regExp =
+			 /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
 
+		 if(!regExp.test(use_email)) {
+			 $('#signID').focus();
+			 return false;
+		 }else{
+			 return true;
+		 }
+	}
+	
+	function checkEmailDuplication(){
+
+		/*
+		var CheckEmail = true;
+
+		$.post("singupEmailDuplicationCheckProc.php", {
+			Email : $("#signID").val(),
+		}, function(data) {
+			console.log("data : " + data);
+			if(data){
+				CheckEmail = true;
+			}
+			else{
+				CheckEmail = false;
+			}
+		});
+		return CheckEmail;
+		*/
+		
+		
+	} 
+	
+	function checkPassword(){
+		var pw1 = $("#signPW").val();
+		var pw2 = $("#signPWCheck").val();
+		
+		if(pw1 != pw2){
+			return false;
+		}else{
+			return true;
+		}
+	}
 });

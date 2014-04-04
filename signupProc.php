@@ -8,7 +8,7 @@ $SignupPassword = $_REQUEST ['Password'];
 $SignupName = $_REQUEST ['Name'];
 $SignupPhone = $_REQUEST ['Phone'];
 
-$SignupMember = mysqli_query ( $conn,
+mysqli_query ( $conn,
 		 "INSERT INTO member (id, email, password, name, phone)
 		VALUES (NULL ,  '$SignupEmail',  '$SignupPassword',  '$SignupName',  '$SignupPhone');
 		" );
