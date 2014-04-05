@@ -23,6 +23,9 @@
 	}
 ?>
 		</select>
+		<select id="car_model" name="car_model">
+			<option value="0">Any Model</option>
+		</select>
 		<select id="car_year" name="car_year">
 			<option value="0" >Year</option>
 <?php
@@ -32,9 +35,6 @@
 		$y--;
 	} 
 ?>
-		</select>
-		<select id="car_model" name="car_model">
-			<option value="0">Any Model</option>
 		</select>
 		<input type="button" id="search" value="Search"/>
 	</div>

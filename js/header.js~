@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
 	/*
-	 * 		KEY FUNCTION
+	 * KEY FUNCTION
 	 */
 
 	$(this).on('keyup', function(e) {
@@ -14,7 +14,7 @@ $(document).ready(function() {
 	});
 
 	/*
-	 * 		INDEX.PHP
+	 * INDEX.PHP
 	 */
 
 	$("#car_make").on('change', function() {
@@ -38,7 +38,7 @@ $(document).ready(function() {
 	});
 
 	/*
-	 * 		SEARCHRESULT.php
+	 * SEARCHRESULT.php
 	 */
 
 	$("#car_searchbar > #car_make").on('change', function() {
@@ -47,52 +47,6 @@ $(document).ready(function() {
 		}, function(data) {
 			$("#car_searchbar > #car_model").html(data);
 		});
-
-
-		if ($("#car_searchbar > #car_make").val() == '0') {
-		} else if ($("#car_searchbar > #car_year").val() == '0') {
-		} else {
-			$.post("carListProc.php", {
-				make : $("#car_searchbar > #car_make").val(),
-				year : $("#car_searchbar > #car_year").val(),
-				code : 0
-			}, function(data) {
-				$("#car_list").html(data);
-			});
-		}
-		
-	});
-
-	$("#car_searchbar > #car_year").on('change', function() {
-
-		if ($("#car_searchbar > #car_make").val() == '0') {
-		} else if ($("#car_searchbar > #car_year").val() == '0') {
-		} else {
-			$.post("carListProc.php", {
-				make : $("#car_searchbar > #car_make").val(),
-				year : $("#car_searchbar > #car_year").val(),
-				code : $("#car_model").val()
-			}, function(data) {
-				$("#car_list").html(data);
-			});
-		}
-	});
-
-
-	$("#car_searchbar > #car_model").on('change', function() {
-
-		if ($("#car_searchbar > #car_make").val() == '0') {
-		} else if ($("#car_searchbar > #car_year").val() == '0') {
-		} else {
-			$.post("carListProc.php", {
-				make : $("#car_searchbar > #car_make").val(),
-				year : $("#car_searchbar > #car_year").val(),
-				code : $("#car_model").val()
-			}, function(data) {
-				$("#car_list").html(data);
-			});
-		}
-		
 	});
 
 	$("#car_searchbar > #search").on('click', function() {
@@ -127,7 +81,7 @@ $(document).ready(function() {
 	});
 
 	/*
-	 * 		login.php
+	 * login.php
 	 */
 
 	
@@ -164,7 +118,7 @@ $(document).ready(function() {
 	}
 
 	/*
-	 * 		signup.php
+	 * signup.php
 	 */
 	
 	$('#signID').on('keypress', function(event) {
@@ -203,6 +157,7 @@ $(document).ready(function() {
 	
 	function signupPostCheck(){
 		$(".alert").hide();
+		
 		
 		var count = 0;
 		

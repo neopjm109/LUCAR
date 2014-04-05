@@ -1,5 +1,11 @@
 <?php
 	include("header.php");
+	
+
+	$makeListQuery = mysqli_query($conn, "
+			select distinct make
+			from car_list
+			");
 ?>
 
 <div id="contents">
@@ -27,17 +33,22 @@
 			<tr>
 				<td>Make</td>
 				<td><select id="vehicle_make" name="car_make">
-						<option>Audi</option>
-						<option>BMW</option>
-						<option>Lexus</option>
-						<option>Mercedez-Benz</option>
-						<option>Porsche</option>
+						<option value="0">Any Make</option>
+<?php 
+	while ($row = mysqli_fetch_row($makeListQuery)) {
+		echo "<option>$row[0]</option>";
+	}
+?>
 					</select>
 				</td>
 			</tr>
 			<tr>
 				<td>Model</td>
-				<td><input type="text" id="vehicle_model"></td>
+				<td>
+					<select id="vehicle_model" name="car_model">
+						<option value="0">Any Model</option>
+					</select>
+				</td>
 			</tr>
 		
 			<tr>

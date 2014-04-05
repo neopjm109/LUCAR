@@ -8,10 +8,16 @@
 	
 	$carMake = $_REQUEST['car_make'];
 	$carYear = $_REQUEST['car_year'];
+
+	$modelList = mysqli_query($conn, "
+			select *
+			from car_list
+			where make = '$carMake';
+			");
 	
 	if ($_REQUEST['car_model']) {
 		$carCode = $_REQUEST['car_model'];
-
+	
 		$carList = mysqli_query($conn, "
 				select sl.id, sp.photo_url, cl.model, sl.title, sl.date
 				from car_list as cl, sell_list as sl, sell_photo as sp
@@ -46,8 +52,22 @@
 			<option value="0">Any Make</option>
 <?php 
 	while ($row = mysqli_fetch_row($makeListQuery)) {
-		echo "<option>$row[0]</option>";
+		if($carMake == $row[0])
+			echo "<option selected>$row[0]</option>";
+		else
+			echo "<option>$row[0]</option>";
 	}
+?>
+		</select>
+		<select id="car_model" name="car_model">
+			<option value="0">Any Model</option>
+<?php
+		while ($row = mysqli_fetch_row($modelList)) {
+			if($carCode == $row[0])
+				echo "<option value=\"$row[0]\" selected>$row[2]</option>";
+			else
+				echo "<option value=\"$row[0]\">$row[2]</option>";
+		}
 ?>
 		</select>
 		<select id="car_year" name="car_year">
@@ -55,13 +75,13 @@
 <?php
 	$y = 2014;
 	while ($y >= 1970) {
-		echo "<option>$y</option>";
+		if($carYear == $y)
+			echo "<option selected>$y</option>";
+		else
+			echo "<option>$y</option>";
 		$y--;
 	} 
 ?>
-		</select>
-		<select id="car_model" name="car_model">
-			<option value="0">Any Model</option>
 		</select>
 		<input type="button" id="search" value="Search"/>
 	</div>
