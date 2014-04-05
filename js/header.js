@@ -7,7 +7,7 @@ $(document).ready(function() {
 	$(this).on('keyup', function(e) {
 		if (e.keyCode = 27) {
 			if ($("#car_page").css("display") == "block") {
-				$("#car_page").hide();
+				$("#car_page").animate({width:"0%", height:"0%"});
 				$("#black_overlay").hide();
 			}
 		}
@@ -117,12 +117,12 @@ $(document).ready(function() {
 		}, function(data) {
 			$("#car_page").html(data);
 		});
-		$("#car_page").show();
+		$("#car_page").animate({width:"80%", height:"50%"});
 		$("#black_overlay").show();
 	});
 
 	$("#car_page").on('click', '#car_page_close', function() {
-		$("#car_page").hide();
+		$("#car_page").animate({width:"0%", height:"0%"});
 		$("#black_overlay").hide();
 	});
 
