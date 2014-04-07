@@ -17,9 +17,9 @@ while ( $row = mysqli_fetch_row ( $loginMember ) ) {
 	$colCount ++;
 }
 if ($colCount == 0) {
-	echo "please check your Email or Password";
+	echo false;
 } else {
-	echo "Success";
+	echo true;
 }
 
 ?>
