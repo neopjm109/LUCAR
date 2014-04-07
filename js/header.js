@@ -158,7 +158,12 @@ $(document).ready(function() {
 				ID : $("#loginID").val(),
 				PW : $("#loginPW").val(),
 			}, function(data) {
-				$(".alert").text(data).fadeIn(700);
+				if(data == false){
+					$(".alert").text("Please check your Email or Password").fadeIn(700);
+				}
+				else{
+						$("#login").submit();
+				}
 			});
 		}
 	}
@@ -212,14 +217,23 @@ $(document).ready(function() {
 		}else if(checkEmailFormat() == false){
 			$(".alert:nth-of-type(1)").text("Email format is not").fadeIn(700);
 			count++;
-		}else if(checkEmailDuplication() == false){
-			$(".alert:nth-of-type(1)").text("Email already exist").fadeIn(700);
-			count++;
 		}
+		else{
+			$.post("singupEmailDuplicationCheckProc.php", {
+				Email : $("#signID").val(),
+			}, function(data) {
+				if(data == false){
+					$(".alert:nth-of-type(1)").text("Email already exist").fadeIn(700);
+					count++;
+				}
+			});
+		}
+		
 		if ($("#signPW").val() == '') {
 			$(".alert:nth-of-type(2)").fadeIn(700);
 			count++;
 		}
+		
 		if ($("#signPWCheck").val() == '') {
 			$(".alert:nth-of-type(3)").fadeIn(700);
 			count++;
@@ -232,6 +246,7 @@ $(document).ready(function() {
 			$(".alert:nth-of-type(4)").fadeIn(700);
 			count++;
 		}
+		
 		if ($("#signPhone").val() == '') {
 			$(".alert:nth-of-type(5)").fadeIn(700);
 			count++;
@@ -262,28 +277,6 @@ $(document).ready(function() {
 			 return true;
 		 }
 	}
-	
-	function checkEmailDuplication(){
-
-		/*
-		var CheckEmail = true;
-
-		$.post("singupEmailDuplicationCheckProc.php", {
-			Email : $("#signID").val(),
-		}, function(data) {
-			console.log("data : " + data);
-			if(data){
-				CheckEmail = true;
-			}
-			else{
-				CheckEmail = false;
-			}
-		});
-		return CheckEmail;
-		*/
-		
-		
-	} 
 	
 	function checkPassword(){
 		var pw1 = $("#signPW").val();
