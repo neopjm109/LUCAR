@@ -148,7 +148,6 @@ $(document).ready(function() {
 	
 	function loginPostCheck(){
 		$(".alert").hide();
-
 		if ($("#loginID").val() == '') {
 			$(".alert").text("Please fill the ID").fadeIn(700);
 		} else if ($("#loginPW").val() == '') {
@@ -162,7 +161,7 @@ $(document).ready(function() {
 					$(".alert").text("Please check your Email or Password").fadeIn(700);
 				}
 				else{
-						$("#login").submit();
+					$(".alert").text("Success").fadeIn(700);
 				}
 			});
 		}
@@ -219,6 +218,9 @@ $(document).ready(function() {
 			count++;
 		}
 		else{
+			$.ajaxSetup({
+				async: false
+				});
 			$.post("singupEmailDuplicationCheckProc.php", {
 				Email : $("#signID").val(),
 			}, function(data) {
@@ -227,6 +229,9 @@ $(document).ready(function() {
 					count++;
 				}
 			});
+			$.ajaxSetup({
+				async: true
+				});
 		}
 		
 		if ($("#signPW").val() == '') {
@@ -294,12 +299,67 @@ $(document).ready(function() {
 	 * 		For Seller.php
 	 */
 	
-	$("#vehicle_make").on('change', function() {
+	$("#sellMake").on('change', function() {
 		$.post('modelList.php', {
-			make : $("#vehicle_make").val()
+			make : $("#sellMake").val()
 		}, function(data) {
-			$("#vehicle_model").html(data);
+			$("#sellModel").html(data);
 		});
 	});
+	
+	$("#registerSell").on('click', function() {
+		registerSellPostCheck();
+	});
+	
+	function registerSellPostCheck(){
+		
+		/*
+		$SellTitle;
+$SellerID;
+$CarCode;
+$SellYear;
+$Color;
+$SellPrice = $_REQUEST ['Price'];
+$SellTransmission = $_REQUEST ['Transmission'];
+$SellMileage = $_REQUEST ['Mileage'];
+$SellDescription = $_REQUEST ['Description'];
+$Date = $_REQUEST['Date'];
+$Report;
+		*/
+			$.post("sellerProc.php", {
+				Title : $("#sellTitle").val(),
+				Year : $("#sellYear option:selected").val(),
+				Make : $("#sellMake option:selected").val(),
+				Model : $("#sellModel option:selected").val(),
+				Mileage : $("#sellMileage").val(),
+				Price : $("#sellPrice").val(),
+				Transmission : $("#sellTransmission").val(),
+				Description : $("#sellDescription").val(),
+				Date : getNowTime()
+			}, function(data) {
+				$(".alert").text(data).fadeIn(700);
+			});
+			
+	}
+	
+	/*
+	 *  etcFunction
+	 */
+	
+	//get Date
+	function getNowTime(){
+		 var now = new Date();
+		 
+		 var Year = now.getFullYear();
+		 var Month = (now.getMonth()+1) > 9 ? ''+(now.getMonth()+1) : '0'+(now.getMonth()+1);
+		 var Day = (now.getDate()) > 9 ? ''+(now.getDate()) : '0'+(now.getDate());
+		 var Hour = (now.getHours()) > 9 ? ''+(now.getHours()) : '0'+(now.getHours());
+		 var Minutes = (now.getMinutes()) > 9 ? ''+(now.getMinutes()) : '0'+(now.getMinutes());
+		 var Second = (now.getSeconds()) > 9 ? ''+(now.getSeconds()) : '0' + (now.getSeconds());
+		 
+		 var nowTime = Year+'-'+Month+'-'+Day+' '+
+		 				Hour + ':' + Minutes + ':' + Second;
+	      return nowTime;
+	}
 
 });

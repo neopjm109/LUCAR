@@ -2,7 +2,14 @@
 
 #seller_header,
 #vehicle_info,
-#contact_info {
+#contact_info,
+#sell_title {
 	width:50em;
 	margin:0 auto;
+}
+
+#registerSell {
+	width:30em;
+	margin-left:28em;
+	margin-top:3em;
 }
