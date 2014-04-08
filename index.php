@@ -1,6 +1,5 @@
 <?php
 	include("header.php");
-	
 	$makeListQuery = mysqli_query($conn, "
 			select distinct make
 			from car_list

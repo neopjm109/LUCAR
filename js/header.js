@@ -161,7 +161,7 @@ $(document).ready(function() {
 					$(".alert").text("Please check your Email or Password").fadeIn(700);
 				}
 				else{
-					$(".alert").text("Success").fadeIn(700);
+					$("#formLogin").submit();
 				}
 			});
 		}
