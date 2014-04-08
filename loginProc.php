@@ -16,13 +16,12 @@ $loginMember = mysqli_query ( $conn, "
 $colCount = 0;
 while ( $row = mysqli_fetch_row ( $loginMember ) ) {
 	$colCount ++;
+	$_SESSION['session_id'] = $row[0];
 }
 if ($colCount == 0) {
-	
 	echo false;
 } else {
 	echo true;
 }
 
 ?>
-
