@@ -24,8 +24,12 @@
 	
 	if (count($carTrans) > 0) {
 		for ($i=0; $i<count($carTrans); $i++) {
-			$query .= " and sl.transmission='$carTrans[$i]'";
-		}		
+			if($i == 0)
+				$query .= " and (sl.transmission='$carTrans[$i]'";
+			else
+				$query .= " or sl.transmission='$carTrans[$i]'";
+		}
+		$query .= ")";
 	}
 	
 	
