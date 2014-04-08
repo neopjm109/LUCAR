@@ -1,6 +1,5 @@
 <?php
 	include("lib.php");
-	
 ?>
 <!DOCTYPE html>
 

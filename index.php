@@ -5,7 +5,6 @@
 			select distinct make
 			from car_list
 			");
-	
 ?>
 
 <div id="contents">
@@ -42,7 +41,6 @@
 	<br>
 	<div class="alert">alert</div>
 </div>
-
 <?php 
 	include("footer.php");
 ?>
