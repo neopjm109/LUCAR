@@ -3,25 +3,34 @@
 	
 	$carMake = $_REQUEST['make'];
 	$carYear = $_REQUEST['year'];
+	$carCode = $_REQUEST['code'];
+	$carTrans = $_REQUEST['trans'];
 	
-	if ($_REQUEST['code'] != '0') {
-		$carCode = $_REQUEST['code'];		
-
-		$carList = mysqli_query($conn, "
-				select sl.id, sp.photo_url, cl.model, sl.title, sl.date
-				from car_list as cl, sell_list as sl, sell_photo as sp
-				where cl.code='$carCode' and sl.year = '2013'
-				and cl.code = sl.car_code
-				and sp.sell_list_id = sl.id
-				");		
-	} else {	
-		$carList = mysqli_query($conn, "
-				select sl.id, sp.photo_url, cl.model, sl.title, sl.date
-				from car_list as cl, sell_list as sl, sell_photo as sp
-				where cl.make = '$carMake' and sl.year ='$carYear'
-				and cl.code = sl.car_code and (sp.sell_list_id = sl.id)
-				");	
+	$query = "
+			select sl.id, sp.photo_url, cl.model, sl.title, sl.date
+			from car_list as cl, sell_list as sl, sell_photo as sp
+			where cl.code = sl.car_code	and sp.sell_list_id = sl.id
+			";
+	
+	if ($carYear != '0') {
+		$query .= " and sl.year='$carYear'";
 	}
+	
+	if ($carCode != '') {
+		$query .= " and cl.code='$carCode'";
+	} else {
+		$query .= " and cl.make='$carMake'";
+	}
+	
+	if (count($carTrans) > 0) {
+		for ($i=0; $i<count($carTrans); $i++) {
+			$query .= " and sl.transmission='$carTrans[$i]'";
+		}		
+	}
+	
+	
+	
+	$carList = mysqli_query($conn, $query);
 
 	$colCount = 0;
 	while ($row = mysqli_fetch_row($carList)) {

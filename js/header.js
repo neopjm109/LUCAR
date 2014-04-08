@@ -41,21 +41,20 @@ $(document).ready(function() {
 	 * 		SEARCHRESULT.php
 	 */
 
-	$("#car_searchbar > #car_make").on('change', function() {
-		$.post('modelList.php', {
-			make : $("#car_searchbar > #car_make").val()
+	$("#result_make").on('change', function() {
+		$.post('modelResultList.php', {
+			make : $("#result_make > input[type='radio']:checked").val()
 		}, function(data) {
-			$("#car_searchbar > #car_model").html(data);
+			$("#car_searchbar > #result_model").html(data);
 		});
 
-
-		if ($("#car_searchbar > #car_make").val() == '0') {
-		} else if ($("#car_searchbar > #car_year").val() == '0') {
+		if ($("#result_make > input[type='radio']:checked").val() == '0') {
+		} else if ($("#result_year").val() == '0') {
 		} else {
 			$.post("carListProc.php", {
-				make : $("#car_searchbar > #car_make").val(),
-				year : $("#car_searchbar > #car_year").val(),
-				code : 0
+				make : $("#result_make > input[type='radio']:checked").val(),
+				year : $("#result_year").val(),
+				code : '0'
 			}, function(data) {
 				$("#car_list").html(data);
 			});
@@ -63,48 +62,82 @@ $(document).ready(function() {
 		
 	});
 
-	$("#car_searchbar > #car_year").on('change', function() {
+	$("#result_year").on('change', function() {
 
-		if ($("#car_searchbar > #car_make").val() == '0') {
-		} else if ($("#car_searchbar > #car_year").val() == '0') {
+		if ($("#result_make > input[type='radio']:checked").val() == '0') {
+		} else if ($("#result_year").val() == '0') {
 		} else {
 			$.post("carListProc.php", {
-				make : $("#car_searchbar > #car_make").val(),
-				year : $("#car_searchbar > #car_year").val(),
-				code : $("#car_model").val()
+				make : $("#result_make > input[type='radio']:checked").val(),
+				year : $("#result_year").val(),
+				code : $("#result_model > input[type='radio']:checked").val()
 			}, function(data) {
 				$("#car_list").html(data);
 			});
 		}
 	});
 
+	$("#result_model").on('change', function() {
 
-	$("#car_searchbar > #car_model").on('change', function() {
-
-		if ($("#car_searchbar > #car_make").val() == '0') {
-		} else if ($("#car_searchbar > #car_year").val() == '0') {
+		if ($("#result_make > input[type='radio']:checked").val() == '0') {
+		} else if ($("#result_year").val() == '0') {
 		} else {
 			$.post("carListProc.php", {
-				make : $("#car_searchbar > #car_make").val(),
-				year : $("#car_searchbar > #car_year").val(),
-				code : $("#car_model").val()
+				make : $("#result_make > input[type='radio']:checked").val(),
+				year : $("#result_year").val(),
+				code : $("#result_model > input[type='radio']:checked").val()
 			}, function(data) {
 				$("#car_list").html(data);
 			});
+		}		
+	});
+
+	$("#result_trans > input[type='checkbox']").on('change', function() {
+
+		var $checkboxes = $("#result_trans > input[type='checkbox']");
+		var count= $checkboxes.length;
+		var transArr = new Array();
+		
+		for (var i=0; i<count; i++) {
+			if( $checkboxes.eq(i).prop("checked") == true) {
+				transArr.push($checkboxes.eq(i).val());
+			}
 		}
 		
+		if( transArr.length == 0) {
+
+			$.post("carListProc.php", {
+				make : $("#result_make > input[type='radio']:checked").val(),
+				year : $("#result_year").val(),
+				code : $("#result_model > input[type='radio']:checked").val()
+			}, function(data) {
+				$("#car_list").html(data);
+			});
+		} else {
+
+			$.post("carListProc.php", {
+				make : $("#result_make > input[type='radio']:checked").val(),
+				year : $("#result_year").val(),
+				code : $("#result_model > input[type='radio']:checked").val(),
+				trans: transArr
+			}, function(data) {
+				$("#car_list").html(data);
+			});
+		}
+
 	});
+
 
 	$("#car_searchbar > #search").on('click', function() {
 		$(".alert").hide();
 
-		if ($("#car_searchbar > #car_make").val() == '0') {
-		} else if ($("#car_searchbar > #car_year").val() == '0') {
+		if ($("#result_make").val() == '0') {
+		} else if ($("#result_year").val() == '0') {
 		} else {
 			$.post("carListProc.php", {
-				make : $("#car_searchbar > #car_make").val(),
-				year : $("#car_searchbar > #car_year").val(),
-				code : $("#car_model").val()
+				make : $("#result_make > input[type='radio']:checked").val(),
+				year : $("#result_year").val(),
+				code : $("#result_model > input[type='radio']:checked").val()
 			}, function(data) {
 				$("#car_list").html(data);
 			});
