@@ -326,10 +326,11 @@ $SellDescription = $_REQUEST ['Description'];
 $Date = $_REQUEST['Date'];
 $Report;
 		*/
+		console.log($("#sellMake option:selected").val());
+		console.log($("#sellModel option:selected").val());
 			$.post("sellerProc.php", {
 				Title : $("#sellTitle").val(),
 				Year : $("#sellYear option:selected").val(),
-				Make : $("#sellMake option:selected").val(),
 				Model : $("#sellModel option:selected").val(),
 				Mileage : $("#sellMileage").val(),
 				Price : $("#sellPrice").val(),

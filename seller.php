@@ -1,11 +1,28 @@
 <?php
 	include("header.php");
 	
+	
+	//login 안되있으면 로그인 하러 가기
+	if($_SESSION['session_id']==NULL){
+		echo "<script>alert(\"Please Login\");</script>";
+		echo "<meta http-equiv='refresh' content='0; url=login.php'>";
+	}
+	
+	$UserID = $_SESSION['session_id'];
 
 	$makeListQuery = mysqli_query($conn, "
 			select distinct make
 			from car_list
 			");
+	
+	$UserQuery = mysqli_query($conn, "
+			select email, phone
+			from member
+			where id = $UserID
+			");
+	
+	
+
 ?>
 
 <div id="contents">
@@ -17,7 +34,6 @@
 	<h2>Title</h2>
 	<input type="text" id="sellTitle" size="100">
 	</div>
-	
 	<div id="vehicle_info">
 	<h2>Vehicle Info</h2>
 		<table>
@@ -94,11 +110,16 @@
 		<table>
 			<tr>
 				<td>Cell Phone</td>
-				<td><input type="text"></td>
+				<?php 
+	$row = mysqli_fetch_row($UserQuery) ;
+		echo "<td><input type=\"text\" value=$row[1]";
+?>
 			</tr>
 			<tr>
 				<td>Email</td>
-				<td><input type="text"></td>
+				<?php 
+		echo "<td><input type=\"text\" value=$row[0]";
+?>
 			</tr>
 			<tr>
 				<td></td>
@@ -106,7 +127,6 @@
 		</table>
 	</div>
 	<input type="button" id="registerSell" value="Register"/>
-	<div class="alert">dd</div>
 </div>
 
 <?php
