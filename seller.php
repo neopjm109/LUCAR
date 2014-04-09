@@ -19,10 +19,8 @@
 			select email, phone
 			from member
 			where id = $UserID
-			");
+			");	
 	
-	
-
 ?>
 
 <div id="contents">
@@ -33,6 +31,8 @@
 	<div id="sell_title">
 	<h2>Title</h2>
 	<input type="text" id="sellTitle" size="100">
+	<br><span class="alert">Please write a Title</span>
+	<br><span class="alert">Please write a Title2</span>
 	</div>
 	<div id="vehicle_info">
 	<h2>Vehicle Info</h2>
@@ -40,6 +40,7 @@
 			<tr>
 				<td>Year</td>
 				<td><select id="sellYear" name="vehicle_year">
+				<option>Year</option>
 <?php
 	$y = 2014;
 	while ($y >= 1970) {
@@ -51,6 +52,7 @@
 					</select>
 					<input type="text" id="sellYear_0"/>
 				</td>
+				<td><span class="alert">Please write a Year</span></td>
 			</tr>
 			<tr>
 				<td>Make</td>
@@ -63,6 +65,7 @@
 ?>
 					</select>
 				</td>
+				<td><span class="alert">Please select Make</span></td>
 			</tr>
 			<tr>
 				<td>Model</td>
@@ -71,16 +74,19 @@
 						<option value="0">Any Model</option>
 					</select>
 				</td>
+				<td><span class="alert">Please select a Model</span></td>
 			</tr>
 		
 			<tr>
 				<td>Mileage</td>
 				<td><input type="text" id="sellMileage"></td>
+				<td><span class="alert">Please write a Mileage</span></td>
 			</tr>
 			
 			<tr>
 				<td>Price</td>
 				<td><input type="text" id="sellPrice"></td>
+				<td><span class="alert">Please write a price</span></td>
 			</tr>
 			
 			<tr>
@@ -91,6 +97,7 @@
 						<option value="stick">Stick</option>
 					</select>
 				</td>
+				<td><span class="alert">Please select a transmission</span></td>
 			</tr>
 			
 			<tr>
@@ -101,6 +108,7 @@
 			<tr>
 				<td>Photo</td>
 				<td></td>
+				<td><span class="alert">Please upload photo</span></td>
 			</tr>
 		</table>
 	</div>
@@ -112,14 +120,17 @@
 				<td>Cell Phone</td>
 				<?php 
 	$row = mysqli_fetch_row($UserQuery) ;
-		echo "<td><input type=\"text\" value=$row[1]";
+		echo "<td><input type=\"text\" value=$row[1]></td>";
 ?>
+			<td><span class="alert">Please write a Phone</span></td>
 			</tr>
+			
 			<tr>
 				<td>Email</td>
 				<?php 
-		echo "<td><input type=\"text\" value=$row[0]";
+		echo "<td><input type=\"text\" value=$row[0]</td>";
 ?>
+			<td><span class="alert">Please write a Email</span></td>
 			</tr>
 			<tr>
 				<td></td>
