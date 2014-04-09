@@ -1,13 +1,19 @@
+<!-- 
+색깔이랑 레포트 유무 아직
+-->
 <?php
 include 'lib.php';
+
+
 ?>
 
 <?php
+
 $SellTitle = $_REQUEST['Title'];
-$SellerID;
-$CarCode;
+$SellerID = $_SESSION['session_id'];
+$Model = $_REQUEST['Model'];
 $SellYear = $_REQUEST['Year'];
-$Color;
+$Color = "#ffffff";
 $SellPrice = $_REQUEST ['Price'];
 $SellTransmission = $_REQUEST ['Transmission'];
 $SellMileage = $_REQUEST ['Mileage'];
@@ -18,7 +24,7 @@ $Report;
 mysqli_query ( $conn,
 		 "INSERT INTO  `naddola`.`sell_list` 
 VALUES (
-NULL ,  '$SellTitle',  '$SellerID',  '$CarCode',  '$SellYear',  '$Color',  '$SellPrice',  '$SellTransmission',  '$SellMileage',  '$SellDescription',  '$Date',  '$report'
+NULL ,  '$SellTitle',  '$SellerID',  '$Model',  '$SellYear',  '$Color',  '$SellPrice',  '$SellTransmission',  '$SellMileage',  '$SellDescription',  '$Date',  '$report'
 );
 		" );
 if($conn->affected_rows == 1){

@@ -314,11 +314,29 @@ $(document).ready(function() {
 	});
 	
 	function registerSellPostCheck(){
+		$(".alert").hide();
+		count = 0;
 		
+		if ($("#sellTitle").val() == '') {
+			$(".alert:nth-of-type(1)").fadeIn(700);
+			count++;
+		}
+		/*
+		if ($("#sellMake option").index($("#sellMake option:selected")) == 0) {
+			$(".alert:nth-of-type(3)").fadeIn(700);
+			count++;
+		}
+		
+		
+		if ($("#sellMileage").val() == '') {
+			$(".alert:nth-of-type(5)").fadeIn(700);
+			count++;
+		}
+		*/
 		/*
 		$SellTitle;
 $SellerID;
-$CarCode;
+$Model;
 $SellYear;
 $Color;
 $SellPrice = $_REQUEST ['Price'];
@@ -328,10 +346,10 @@ $SellDescription = $_REQUEST ['Description'];
 $Date = $_REQUEST['Date'];
 $Report;
 		*/
+		if(count == 0){
 			$.post("sellerProc.php", {
 				Title : $("#sellTitle").val(),
 				Year : $("#sellYear option:selected").val(),
-				Make : $("#sellMake option:selected").val(),
 				Model : $("#sellModel option:selected").val(),
 				Mileage : $("#sellMileage").val(),
 				Price : $("#sellPrice").val(),
@@ -339,9 +357,9 @@ $Report;
 				Description : $("#sellDescription").val(),
 				Date : getNowTime()
 			}, function(data) {
-				$(".alert").text(data).fadeIn(700);
+				//$(".alert").text(data).fadeIn(700);
 			});
-			
+		}
 	}
 	
 	/*
