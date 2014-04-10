@@ -91,7 +91,6 @@ $(document).ready(function() {
 		}
 		
 		if( transArr.length == 0) {
-
 			$.post("carListProc.php", {
 				make : $("#result_make > input[type='radio']:checked").val(),
 				year : $("#result_year").val(),
@@ -100,7 +99,6 @@ $(document).ready(function() {
 				$("#car_list").html(data);
 			});
 		} else {
-
 			$.post("carListProc.php", {
 				make : $("#result_make > input[type='radio']:checked").val(),
 				year : $("#result_year").val(),
@@ -110,7 +108,19 @@ $(document).ready(function() {
 				$("#car_list").html(data);
 			});
 		}
-
+	});
+	
+	$("#result_color input[type='radio']").on('click', function(){
+		if ( $(this).prop("checked") == true ) {
+			$.post("carListProc.php", {
+				make : $("#result_make > input[type='radio']:checked").val(),
+				year : $("#result_year").val(),
+				code : $("#result_model > input[type='radio']:checked").val(),
+				color: $(this).val()
+			}, function(data) {
+				$("#car_list").html(data);
+			});
+		}
 	});
 
 	$("#car_list").on('click', 'div.column', function() {

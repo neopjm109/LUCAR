@@ -1,3 +1,4 @@
+
 <?php
 	include("header.php");
 	
@@ -97,6 +98,11 @@
 		<div id="result_price">
 			<select>
 				<option value="0">Any Price</option>
+				<option value="5000">Less $5000</option>
+				<option value="10000">Less $10000</option>
+				<option value="15000">Less $15000</option>
+				<option value="20000">Less $20000</option>
+				<option value="20000m">More $20000</option>
 			</select>	
 		</div>
 		
@@ -105,8 +111,11 @@
 		$colorCount = 0;
 		while ($row = mysqli_fetch_row($carColor)) {
 			echo "<input type=\"radio\" name='car_color' id='color_$colorCount' value='$row[0]'/>";
-			echo "<label for='color_$colorCount'>$row[1]</label><br>";
+			echo "<label class='label' for='color_$colorCount' style=\"background-color:$row[0]\">&nbsp;</label>";
 			$colorCount++;
+			if( $colorCount % 5 == 0 ) {
+				echo "<br>";
+			}
 		}
 ?>
 		</div>
@@ -126,7 +135,12 @@
 		
 		<div id="result_mileage">
 			<select>
-				<option value="0">Any Mileage</option>	
+				<option value="0">Any Mileage</option>
+				<option value="5000">Less 5000 Miles</option>
+				<option value="10000">Less 10000 Miles</option>
+				<option value="15000">Less 15000 Miles</option>
+				<option value="20000">Less 20000 Miles</option>
+				<option value="20000m">More 20000 Miles</option>
 			</select>
 		</div>
 	</div>

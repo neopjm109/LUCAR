@@ -5,6 +5,7 @@
 	$carYear = $_REQUEST['year'];
 	$carCode = $_REQUEST['code'];
 	$carTrans = $_REQUEST['trans'];
+	$carColor = $_REQUEST['color'];
 	
 	$query = "
 			select sl.id, sp.photo_url, cl.model, sl.title, sl.date
@@ -13,26 +14,28 @@
 			";
 	
 	if ($carYear != '0') {
-		$query .= " and sl.year='$carYear'";
+		$query .= " and sl.year >= '$carYear'";
 	}
 	
 	if ($carCode != '') {
-		$query .= " and cl.code='$carCode'";
+		$query .= " and cl.code = '$carCode'";
 	} else {
-		$query .= " and cl.make='$carMake'";
+		$query .= " and cl.make = '$carMake'";
 	}
 	
 	if (count($carTrans) > 0) {
 		for ($i=0; $i<count($carTrans); $i++) {
 			if($i == 0)
-				$query .= " and (sl.transmission='$carTrans[$i]'";
+				$query .= " and (sl.transmission = '$carTrans[$i]'";
 			else
-				$query .= " or sl.transmission='$carTrans[$i]'";
+				$query .= " or sl.transmission = '$carTrans[$i]'";
 		}
 		$query .= ")";
 	}
 	
-	
+	if ($carColor != '') {
+		$query .= " and color = '$carColor'";
+	}
 	
 	$carList = mysqli_query($conn, $query);
 

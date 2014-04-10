@@ -26,7 +26,7 @@
 #car_searchbar > div,
 #car_detail > div {
 	display:inline-block;
-	border:1px solid black;	
+	border:0px solid black;	
 	
 	width:30%;
 	height:5em;
@@ -39,8 +39,26 @@
 }
 
 #result_make, #result_model,
-#result_color, #result_trans {
+#result_trans {
 	text-align:left;
+}
+
+#result_color input[type='radio']{
+	display:none;
+	min-height:3em;
+}
+
+#result_color input[type='radio'] + label {
+	display:inline-block;
+	border:0px solid black;
+	width:1em;
+	padding:0.5em 0.5em;
+	margin:0.1em 0.1em;
+}
+#result_color input[type='radio']:checked + label {
+	border:0.2em dashed #7f7f7f;
+	padding:0.3em 0.3em;
+	margin:0.1em 0.1em;
 }
 
 #car_detail select {
