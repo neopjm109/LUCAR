@@ -346,7 +346,11 @@ $SellDescription = $_REQUEST ['Description'];
 $Date = $_REQUEST['Date'];
 $Report;
 		*/
+		$.ajaxSetup({
+			async: false
+			});
 		if(count == 0){
+			$Date = getNowTime();
 			$.post("sellerProc.php", {
 				Title : $("#sellTitle").val(),
 				Year : $("#sellYear option:selected").val(),
@@ -355,11 +359,27 @@ $Report;
 				Price : $("#sellPrice").val(),
 				Transmission : $("#sellTransmission").val(),
 				Description : $("#sellDescription").val(),
-				Date : getNowTime()
+				Date : $Date
 			}, function(data) {
-				//$(".alert").text(data).fadeIn(700);
+				if(data){
+					$.post("sell_photoProc.php", {
+						Title : $("#sellTitle").val(),
+						Year : $("#sellYear option:selected").val(),
+						Model : $("#sellModel option:selected").val(),
+						Mileage : $("#sellMileage").val(),
+						Price : $("#sellPrice").val(),
+						Transmission : $("#sellTransmission").val(),
+						Description : $("#sellDescription").val(),
+						Date : $Date
+					}, function(data) {
+						$(".alert:nth-of-type(1)").text(data).fadeIn(700);
+					});
+				}
 			});
 		}
+		$.ajaxSetup({
+			async: true
+			});
 	}
 	
 	/*
