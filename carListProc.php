@@ -6,6 +6,8 @@
 	$carCode = $_REQUEST['code'];
 	$carTrans = $_REQUEST['trans'];
 	$carColor = $_REQUEST['color'];
+	$carPrice = $_REQUEST['price'];
+	$carMileage = $_REQUEST['mileage'];
 	
 	$query = "
 			select sl.id, sp.photo_url, cl.model, sl.title, sl.date
@@ -35,6 +37,14 @@
 	
 	if ($carColor != '') {
 		$query .= " and color = '$carColor'";
+	}
+	
+	if ($carPrice != '') {
+		$query .= " and price <= '$carPrice'";
+	}
+	
+	if ($carMileage != '') {
+		$query .= " and mileage <= '$carMileage'";
 	}
 	
 	$carList = mysqli_query($conn, $query);

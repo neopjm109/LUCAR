@@ -123,6 +123,28 @@ $(document).ready(function() {
 		}
 	});
 
+	$("#result_price").on('change', function() {
+		$.post("carListProc.php", {
+			make : $("#result_make > input[type='radio']:checked").val(),
+			year : $("#result_year").val(),
+			code : $("#result_model > input[type='radio']:checked").val(),
+			price: $("#result_price > select").val()
+		}, function(data) {
+			$("#car_list").html(data);
+		});
+	});
+
+	$("#result_mileage").on('change', function() {
+		$.post("carListProc.php", {
+			make : $("#result_make > input[type='radio']:checked").val(),
+			year : $("#result_year").val(),
+			code : $("#result_model > input[type='radio']:checked").val(),
+			mileage: $("#result_mileage > select").val()
+		}, function(data) {
+			$("#car_list").html(data);
+		});
+	});
+
 	$("#car_list").on('click', 'div.column', function() {
 		$.post("carPageProc.php", {
 			sell_num : $(this).find("#sellNum").val()
@@ -356,11 +378,7 @@ $SellDescription = $_REQUEST ['Description'];
 $Date = $_REQUEST['Date'];
 $Report;
 		*/
-		$.ajaxSetup({
-			async: false
-			});
 		if(count == 0){
-			$Date = getNowTime();
 			$.post("sellerProc.php", {
 				Title : $("#sellTitle").val(),
 				Year : $("#sellYear option:selected").val(),
@@ -369,27 +387,11 @@ $Report;
 				Price : $("#sellPrice").val(),
 				Transmission : $("#sellTransmission").val(),
 				Description : $("#sellDescription").val(),
-				Date : $Date
+				Date : getNowTime()
 			}, function(data) {
-				if(data){
-					$.post("sell_photoProc.php", {
-						Title : $("#sellTitle").val(),
-						Year : $("#sellYear option:selected").val(),
-						Model : $("#sellModel option:selected").val(),
-						Mileage : $("#sellMileage").val(),
-						Price : $("#sellPrice").val(),
-						Transmission : $("#sellTransmission").val(),
-						Description : $("#sellDescription").val(),
-						Date : $Date
-					}, function(data) {
-						$(".alert:nth-of-type(1)").text(data).fadeIn(700);
-					});
-				}
+				//$(".alert").text(data).fadeIn(700);
 			});
 		}
-		$.ajaxSetup({
-			async: true
-			});
 	}
 	
 	/*

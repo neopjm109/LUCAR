@@ -3,6 +3,8 @@
 -->
 <?php
 include 'lib.php';
+
+
 ?>
 
 <?php
@@ -25,8 +27,6 @@ VALUES (
 NULL ,  '$SellTitle',  '$SellerID',  '$Model',  '$SellYear',  '$Color',  '$SellPrice',  '$SellTransmission',  '$SellMileage',  '$SellDescription',  '$Date',  '$report'
 );
 		" );
-
-
 if($conn->affected_rows == 1){
 	echo true;
 } else {
