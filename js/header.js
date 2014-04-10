@@ -110,7 +110,6 @@ $(document).ready(function() {
 				$("#car_list").html(data);
 			});
 		}
-
 	});
 
 	$("#car_list").on('click', 'div.column', function() {
@@ -167,6 +166,10 @@ $(document).ready(function() {
 				}
 			});
 		}
+	}
+	
+	function woosikbabo(){
+		
 	}
 
 	/*
