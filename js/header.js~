@@ -48,16 +48,34 @@ $(document).ready(function() {
 			$("#car_searchbar > #result_model").html(data);
 		});
 
-		postCarList();
+		$.post("carListProc.php", {
+			make : $("#result_make > input[type='radio']:checked").val(),
+			year : $("#result_year").val(),
+		}, function(data) {
+			$("#car_list").html(data);
+		});
 		
 	});
 
 	$("#result_year").on('change', function() {
-		postCarList();
+
+		$.post("carListProc.php", {
+			make : $("#result_make > input[type='radio']:checked").val(),
+			year : $("#result_year").val(),
+			code : $("#result_model > input[type='radio']:checked").val()
+		}, function(data) {
+			$("#car_list").html(data);
+		});
 	});
 
 	$("#result_model").on('change', function() {
-		postCarList();
+		$.post("carListProc.php", {
+			make : $("#result_make > input[type='radio']:checked").val(),
+			year : $("#result_year").val(),
+			code : $("#result_model > input[type='radio']:checked").val()
+		}, function(data) {
+			$("#car_list").html(data);
+		});
 	});
 
 	$("#result_trans > input[type='checkbox']").on('change', function() {
@@ -76,10 +94,7 @@ $(document).ready(function() {
 			$.post("carListProc.php", {
 				make : $("#result_make > input[type='radio']:checked").val(),
 				year : $("#result_year").val(),
-				code : $("#result_model > input[type='radio']:checked").val(),
-				color: $("#result_color input[type='radio']:checked").val(),
-				price: $("#result_price > select").val(),
-				mileage: $("#result_mileage > select").val()
+				code : $("#result_model > input[type='radio']:checked").val()
 			}, function(data) {
 				$("#car_list").html(data);
 			});
@@ -88,9 +103,6 @@ $(document).ready(function() {
 				make : $("#result_make > input[type='radio']:checked").val(),
 				year : $("#result_year").val(),
 				code : $("#result_model > input[type='radio']:checked").val(),
-				color: $("#result_color input[type='radio']:checked").val(),
-				price: $("#result_price > select").val(),
-				mileage: $("#result_mileage > select").val(),
 				trans: transArr
 			}, function(data) {
 				$("#car_list").html(data);
@@ -99,32 +111,39 @@ $(document).ready(function() {
 	});
 	
 	$("#result_color input[type='radio']").on('click', function(){
-		if( $(this).prop('checked') == true ) {
-			postCarList();
+		if ( $(this).prop("checked") == true ) {
+			$.post("carListProc.php", {
+				make : $("#result_make > input[type='radio']:checked").val(),
+				year : $("#result_year").val(),
+				code : $("#result_model > input[type='radio']:checked").val(),
+				color: $(this).val()
+			}, function(data) {
+				$("#car_list").html(data);
+			});
 		}
 	});
 
 	$("#result_price").on('change', function() {
-		postCarList();
-	});
-
-	$("#result_mileage").on('change', function() {
-		postCarList();
-	});
-
-	function postCarList() {
 		$.post("carListProc.php", {
 			make : $("#result_make > input[type='radio']:checked").val(),
 			year : $("#result_year").val(),
 			code : $("#result_model > input[type='radio']:checked").val(),
-			color: $("#result_color input[type='radio']:checked").val(),
-			price: $("#result_price > select").val(),
+			price: $("#result_price > select").val()
+		}, function(data) {
+			$("#car_list").html(data);
+		});
+	});
+
+	$("#result_mileage").on('change', function() {
+		$.post("carListProc.php", {
+			make : $("#result_make > input[type='radio']:checked").val(),
+			year : $("#result_year").val(),
+			code : $("#result_model > input[type='radio']:checked").val(),
 			mileage: $("#result_mileage > select").val()
 		}, function(data) {
 			$("#car_list").html(data);
 		});
-		
-	}
+	});
 
 	$("#car_list").on('click', 'div.column', function() {
 		$.post("carPageProc.php", {
@@ -139,18 +158,6 @@ $(document).ready(function() {
 	$("#car_page").on('click', '#car_page_close', function() {
 		$("#car_page").animate({width:"0%", height:"0%"});
 		$("#black_overlay").hide();
-	});
-	
-	$(window).scroll(function() {
-		if( $(this).scrollTop() > 50) {
-			$("#side_menu").show().animate({left:"0"}, 500);
-		} else {
-			$("#side_menu").show().animate({left:"-10em"}, 500);
-		}
-	});
-	
-	$("#side_menu").on('click', function() {
-		alert($(this).width());
 	});
 
 	/*
@@ -382,7 +389,20 @@ $Report;
 				Description : $("#sellDescription").val(),
 				Date : getNowTime()
 			}, function(data) {
-				//$(".alert").text(data).fadeIn(700);
+				if(data){
+					$.post("sell_photoProc.php", {
+						Title : $("#sellTitle").val(),
+						Year : $("#sellYear option:selected").val(),
+						Model : $("#sellModel option:selected").val(),
+						Mileage : $("#sellMileage").val(),
+						Price : $("#sellPrice").val(),
+						Transmission : $("#sellTransmission").val(),
+						Description : $("#sellDescription").val(),
+						Date : $Date
+					}, function(data) {
+						$(".alert:nth-of-type(1)").text(data).fadeIn(700);
+					});
+				}
 			});
 		}
 	}

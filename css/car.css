@@ -2,11 +2,11 @@
 
 #side_menu {
 	position:fixed;
-	min-width:5em;
+	min-width:10em;
 	min-height:5em;
 	height:auto;
 	
-	top:10em;
+	left:-10em; top:10em;
 	background-color:#adfadf;
 }
 

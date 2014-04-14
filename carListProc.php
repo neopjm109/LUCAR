@@ -39,11 +39,11 @@
 		$query .= " and color = '$carColor'";
 	}
 	
-	if ($carPrice != '') {
+	if ($carPrice != '0') {
 		$query .= " and price <= '$carPrice'";
 	}
 	
-	if ($carMileage != '') {
+	if ($carMileage != '0') {
 		$query .= " and mileage <= '$carMileage'";
 	}
 	
